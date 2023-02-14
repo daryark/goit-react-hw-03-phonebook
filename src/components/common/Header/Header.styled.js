@@ -8,7 +8,6 @@ export const Header1 = styled.h1`
   margin-bottom: ${h1 => h1.theme.spaces[4]}px;
 
   font-size: ${h1 => h1.theme.fontSizes.xl}px;
-  background-color: ${h1 => h1.theme.colors.accent};
 
   svg {
     text-align: end;
