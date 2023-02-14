@@ -1,8 +1,9 @@
 import styled from 'styled-components';
 
-export const ContactInfo = styled.span`
-  font-size: ${span => span.theme.fontSizes.s}px;
-  margin-right: ${span => span.theme.spaces[3]}px;
+export const ContactInfo = styled.p`
+  font-size: ${p => p.theme.fontSizes.m}px;
+  margin-right: ${p => p.theme.spaces[4]}px;
+  display: inline-block;
 `;
 
 export const ContactItem = styled.li`
@@ -15,12 +16,15 @@ export const ContactItem = styled.li`
 `;
 
 export const DeleteBtn = styled.button`
-  padding: ${button => button.theme.spaces[3]}px;
+  padding: ${button => button.theme.spaces[4]}px;
   color: ${button => button.theme.colors.secondary};
   border: none;
   background-color: transparent;
 
   svg {
+    width: ${button => button.theme.fontSizes.m}px;
+    height: auto;
+    display: block;
     transition: color 350ms cubic-bezier(0.4, 0, 0.2, 1);
   }
   &:hover svg {

@@ -7,8 +7,9 @@ export const AddContactForm = styled.form`
 
 export const FormBtn = styled.button`
   margin-left: ${input => input.theme.spaces[2]}px;
-  padding: 1px ${input => input.theme.spaces[3]}px;
-  padding-bottom: 2px;
+  padding: ${input => input.theme.spaces[1]}px
+    ${input => input.theme.spaces[3]}px;
+  padding-bottom: ${input => input.theme.spaces[2]}px;
 
   font-size: ${input => input.theme.fontSizes.s}px;
   color: ${input => input.theme.colors.inverse};

@@ -21,7 +21,7 @@ export const ContactList = ({ deleteContact, filter }) => {
             </ContactItem>
           ))
       ) : (
-        <Notification>Sorry, no find contacts</Notification>
+        <Notification>Sorry, no matches found</Notification>
       )}
     </ul>
   );

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Input = styled.input`
   margin-left: ${input => input.theme.spaces[2]}px;
-  padding: ${input => input.theme.spaces[1]}px;
+  padding: ${input => input.theme.spaces[2]}px;
   padding-left: ${input => input.theme.spaces[5]}px;
   width: 130px;
 
