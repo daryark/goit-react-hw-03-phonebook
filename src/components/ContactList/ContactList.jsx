@@ -7,19 +7,17 @@ export const ContactList = ({ deleteContact, filter }) => {
   return (
     <ul>
       {filter.length ? (
-        filter
-          .sort((a, b) => a.name.localeCompare(b.name))
-          .map(({ name, number, id }) => (
-            <ContactItem key={id}>
-              <div>
-                <ContactInfo>{name}</ContactInfo>
-                <ContactInfo>{number}</ContactInfo>
-              </div>
-              <DeleteBtn type="button" onClick={() => deleteContact(id)}>
-                <FaRegTrashAlt />
-              </DeleteBtn>
-            </ContactItem>
-          ))
+        filter.map(({ name, number, id }) => (
+          <ContactItem key={id}>
+            <div>
+              <ContactInfo>{name}</ContactInfo>
+              <ContactInfo>{number}</ContactInfo>
+            </div>
+            <DeleteBtn type="button" onClick={() => deleteContact(id)}>
+              <FaRegTrashAlt />
+            </DeleteBtn>
+          </ContactItem>
+        ))
       ) : (
         <Notification>Sorry, no matches found</Notification>
       )}
@@ -34,6 +32,6 @@ ContactList.propTypes = {
       name: PropTypes.string,
       number: PropTypes.string,
       id: PropTypes.string,
-    })
+    }).isRequired
   ).isRequired,
 };

@@ -6,7 +6,6 @@ export const AddContactForm = styled.form`
 `;
 
 export const FormBtn = styled.button`
-  margin-left: ${input => input.theme.spaces[2]}px;
   padding: ${input => input.theme.spaces[1]}px
     ${input => input.theme.spaces[3]}px;
   padding-bottom: ${input => input.theme.spaces[2]}px;
@@ -21,6 +20,6 @@ export const FormBtn = styled.button`
   transition: box-shadow 250ms cubic-bezier(0.4, 0, 0.2, 1);
 
   &:hover {
-    box-shadow: 0px -20px 15px inset rgba(14, 16, 21, 0.08);
+    box-shadow: 0px -20px 15px inset rgba(14, 16, 21, 0.1);
   }
 `;

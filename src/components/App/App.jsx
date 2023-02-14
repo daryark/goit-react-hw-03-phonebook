@@ -1,60 +1,18 @@
-// import { Component } from 'react';
-// import { ContactForm } from './ContactForm/ContactForm';
-// import { ContactList } from './ContactList/ContactList';
-// import { Filter } from './Filter/Filter';
-
-// export class App extends Component {
-//   state = {
-//     contacts: [],
-//     filter: '',
-//   };
-
-//   handleFormSubmit = data => {
-//     console.log('this is data', data);
-//     this.setState({
-//       contacts: [data, ...this.state.contacts],
-//     });
-//   };
-
-//   filter = e => {
-//     console.log(e.target.value);
-//   };
-//   // deleteContact = e => {
-//   //   this.setState(prevState => )({
-//   //     contacts: prevState.contacts.filter(({id} => id !== e.currentTarget.elements.id))
-//   //   })
-//   // };
-
-//   render() {
-//     return (
-//       <>
-//         <h1>Phone book</h1>
-//         <ContactForm onSubmit={this.handleFormSubmit} />
-
-//         <h2>Contacts</h2>
-//         <Filter onChangeEvent={this.filter} filter={this.state.filter} />
-//         <ContactList
-//           contacts={this.state.contacts}
-//           deleteContact={this.deleteContact}
-//         />
-//       </>
-//     );
-//   }
-// }
-
 import { Component } from 'react';
 import { nanoid } from 'nanoid';
 import { FaRegAddressBook, FaSearch } from 'react-icons/fa';
-
-import { ContactList } from '../ContactList/ContactList';
-import { ContactForm } from '../ContactForm/ContactForm';
-
-import { Header1, Header2 } from '../common/Header/Header.styled';
-import { Input, Search } from 'components/common/Input/Input.styled';
-import { Section, Container, HeaderSection } from './App.styled';
-import { Notification } from 'components/common/Notification/Notification.styled';
-
-//!!!!!!!!WRITE PROPTYPES
+import {
+  ContactList,
+  ContactForm,
+  Section,
+  Container,
+  HeaderSection,
+  Header1,
+  Header2,
+  Input,
+  Search,
+  Notification,
+} from './reexport';
 
 export class App extends Component {
   state = {
@@ -67,11 +25,23 @@ export class App extends Component {
     filter: '',
   };
 
+  // componentDidMount() {
+  //   const contacts = JSON.parse(localStorage.getItem('contacts'));
+  //   if (contacts) {
+  //     console.log('there is smth in the LS');
+  //     this.setState({ contacts });
+  //   }
+  // }
+
   handleSubmit = data => {
     const { contacts } = this.state;
 
-    if (contacts.some(contact => contact.name === data.name)) {
-      alert(`${data.name} is already in your contacts!`);
+    if (
+      contacts.some(
+        contact => contact.name.toLowerCase() === data.name.toLowerCase()
+      )
+    ) {
+      alert(`${data.name} is already in your contacts! Try to find in search.`);
       return;
     }
 
@@ -86,18 +56,24 @@ export class App extends Component {
     }));
   };
 
-  filter = e => {
+  handleChangeFilter = e => {
     this.setState({ filter: e.target.value });
   };
 
-  render() {
+  getFilteredContacts = () => {
     const { contacts, filter } = this.state;
-    const filteredContacts =
+    const filtered =
       filter && contacts.length
         ? contacts.filter(({ name }) =>
             name.trim().toLowerCase().includes(filter.trim().toLowerCase())
           )
         : contacts;
+    return filtered.sort((a, b) => a.name.localeCompare(b.name));
+  };
+
+  render() {
+    const { contacts } = this.state;
+    const filteredContacts = this.getFilteredContacts();
 
     return (
       <>
@@ -120,7 +96,7 @@ export class App extends Component {
               type="text"
               name="filter"
               id="filter"
-              onChange={this.filter}
+              onChange={this.handleChangeFilter}
             />
             {!contacts.length ? (
               <Notification>

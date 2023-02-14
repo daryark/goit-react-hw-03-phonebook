@@ -1,7 +1,8 @@
 import styled from 'styled-components';
 
 export const Input = styled.input`
-  margin-left: ${input => input.theme.spaces[2]}px;
+  margin: 0 ${input => input.theme.spaces[2]}px
+    ${input => input.theme.spaces[2]}px 0;
   padding: ${input => input.theme.spaces[2]}px;
   padding-left: ${input => input.theme.spaces[5]}px;
   width: 130px;
